@@ -20,7 +20,7 @@ jobs:
           mkarchiso -v -w /tmp/archiso-workspace -o /tmp/archiso-out configs/releng/
           
       - name: Upload ISO
-        uses: actions/apps/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: Arch-ISO
           path: /tmp/archiso-out/*.iso
