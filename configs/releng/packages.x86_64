@@ -1,3 +1,4 @@
+alacritty
 alsa-utils
 amd-ucode
 arch-install-scripts
@@ -17,6 +18,7 @@ darkhttpd
 ddrescue
 dhcpcd
 diffutils
+dmenu
 dmidecode
 dmraid
 dnsmasq
@@ -29,6 +31,7 @@ ethtool
 exfatprogs
 f2fs-tools
 fatresize
+feh
 foot-terminfo
 fsarchiver
 git
@@ -45,6 +48,8 @@ iw
 iwd
 jfsutils
 kitty-terminfo
+i3status
+i3-wm
 ldns
 less
 lftp
@@ -128,4 +133,6 @@ wvdial
 xdg-utils
 xfsprogs
 xl2tpd
+xorg-server
+xorg-xinit
 zsh
