@@ -1,0 +1,26 @@
+name: Build Arch ISO
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+      options: --privileged
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pacman -Syu --noconfirm archiso
+
+      - name: Build ISO
+        run: |
+          mkarchiso -v -w /tmp/archiso-workspace -o /tmp/archiso-out configs/releng/
+          
+      - name: Upload ISO
+        uses: actions/apps/upload-artifact@v4
+        with:
+          name: Arch-ISO
+          path: /tmp/archiso-out/*.iso
