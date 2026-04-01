@@ -31,6 +31,7 @@ f2fs-tools
 fatresize
 foot-terminfo
 fsarchiver
+git
 gpart
 gpm
 gptfdisk
@@ -72,6 +73,7 @@ mtools
 nano
 nbd
 ndisc6
+networkmanager
 nfs-utils
 nilfs-utils
 nmap
@@ -83,6 +85,7 @@ openconnect
 openpgp-card-tools
 openssh
 openvpn
+os-prober
 partclone
 parted
 partimage
