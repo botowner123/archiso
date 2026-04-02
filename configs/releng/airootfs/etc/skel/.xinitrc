@@ -1,16 +1,25 @@
 #!/bin/sh
 
-# Load custom X resources (cursors, colors)
+# 1. Load X resources (Fixes cursor size and terminal colors)
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-# Start the compositor for your "Glass" effects
-picom --animations -b &
+# 2. Set the Wallpaper
+# Note: Ensure the image is at airootfs/root/SmallMemory.jpg in your repo
+feh --bg-fill /root/SmallMemory.jpg &
 
-# Set the wallpaper
-nitrogen --restore &
+# 3. Start the Compositor (Crucial for Polybar transparency/blur)
+# The -b flag runs it in the background
+picom -b &
 
-# Launch your "Pill" Polybar
-~/.config/polybar/launch.sh &
+# 4. Launch the Polybar (The "Pill")
+# This assumes your launch script is in the standard location
+if [ -f ~/.config/polybar/launch.sh ]; then
+    ~/.config/polybar/launch.sh &
+fi
 
-# Finally, start i3
+# 5. Network Manager Applet (Optional, for the Wi-Fi icon)
+nm-applet &
+
+# 6. Start the Window Manager
+# This MUST be the last line and must use 'exec'
 exec i3
