@@ -17,11 +17,10 @@ jobs:
 
       - name: Update Mirrors
         run: |
-          # Force generate a mirrorlist if it's missing or empty
-          reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-          # Refresh databases
-          pacman -Sy
-
+          # Initialize keys and update the database
+          pacman-key --init
+          pacman-key --populate archlinux
+          pacman -Sy --noconfirm
       - name: Build ISO
         run: |
           mkarchiso -v -w /tmp/archiso-workspace -o /tmp/archiso-out configs/releng/
