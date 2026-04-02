@@ -1,5 +1,8 @@
-name: Build Arch ISO
+name: Build AurumOS ISO
+
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -8,25 +11,38 @@ jobs:
     container:
       image: archlinux:latest
       options: --privileged
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: pacman -Syu --noconfirm archiso
-
-      - name: Update Mirrors
+      - name: Prepare Arch Linux Environment
         run: |
-          # Initialize keys and update the database
+          # 1. Update the keys first to prevent signature errors
           pacman-key --init
           pacman-key --populate archlinux
-          pacman -Sy --noconfirm
+          
+          # 2. Force a fresh, working mirrorlist that includes 'extra'
+          echo "Server = https://geo.mirror.pkgbuild.com/\$repo/os/\$arch" > /etc/pacman.d/mirrorlist
+          
+          # 3. Update system and install archiso
+          pacman -Syu --noconfirm archiso curl
+
       - name: Build ISO
         run: |
-          mkarchiso -v -w /tmp/archiso-workspace -o /tmp/archiso-out configs/releng/
+          # Create workspace and output directories
+          mkdir -p /tmp/archiso-workspace
+          mkdir -p /tmp/archiso-out
           
-      - name: Upload ISO
+          # Run the build
+          # We use -v for verbose to see exactly where it fails if it does
+          mkarchiso -v \
+            -w /tmp/archiso-workspace \
+            -o /tmp/archiso-out \
+            configs/releng/
+
+      - name: Upload ISO Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Arch-ISO
+          name: AurumOS-ISO
           path: /tmp/archiso-out/*.iso
