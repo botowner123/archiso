@@ -97,6 +97,7 @@ partclone
 parted
 partimage
 pcsclite
+picom
 polkit
 ppp
 pptpclient
@@ -138,4 +139,5 @@ xfsprogs
 xl2tpd
 xorg-server
 xorg-xinit
+xorg-xrandr
 zsh
