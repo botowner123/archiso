@@ -1,23 +1,16 @@
 #!/bin/sh
 
-# 1. Set the Wallpaper
-# We use & to run this in the background so the script keeps moving
+# Set wallpaper
 feh --bg-fill /root/SmallMemory.jpg &
 
-# 2. Start the Compositor
-# picom -b runs it in 'daemon' mode (background) automatically
+# Start compositor for blur/transparency
 picom -b &
 
-# 3. Launch the Polybar "Pill"
-# We call the script you just created. 
-# The & is vital here so i3 can start immediately after.
+# Launch the Polybar using your new script
 ~/.config/polybar/launch.sh &
 
-# 4. Network Manager Applet
-# Shows your Wi-Fi/Ethernet icon in the system tray
+# Network icon
 nm-applet &
 
-# 5. Start the Window Manager
-# 'exec' means this is the final process. 
-# Do NOT put an & after 'exec i3'.
+# Start i3 (Must be last)
 exec i3
