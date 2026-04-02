@@ -15,6 +15,13 @@ jobs:
       - name: Install dependencies
         run: pacman -Syu --noconfirm archiso
 
+      - name: Update Mirrors
+        run: |
+          # Force generate a mirrorlist if it's missing or empty
+          reflector --latest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+          # Refresh databases
+          pacman -Sy
+
       - name: Build ISO
         run: |
           mkarchiso -v -w /tmp/archiso-workspace -o /tmp/archiso-out configs/releng/
