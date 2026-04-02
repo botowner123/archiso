@@ -7,4 +7,4 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # 3. Launch the bar (using the name of your bar from config.ini)
-polybar mybar &
+polybar mainbar &
