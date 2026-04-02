@@ -1,0 +1,11 @@
+NAME="AurumOS"
+PRETTY_NAME="AurumOS Linux"
+ID=aurumos
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;255;215;0"
+HOME_URL="https://github.com/your-username/aurumos"
+DOCUMENTATION_URL="https://github.com/your-username/aurumos/wiki"
+SUPPORT_URL="https://github.com/your-username/aurumos/issues"
+BUG_REPORT_URL="https://github.com/your-username/aurumos/issues"
+LOGO=archlinux-logo
